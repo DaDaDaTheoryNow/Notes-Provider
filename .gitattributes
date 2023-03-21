@@ -1,0 +1,4 @@
+*.cmake linguist-detectable=false
+*.c++ linguist-detectable=false
+*.c linguist-detectable=false
+*.objective-c linguist-detectable=false

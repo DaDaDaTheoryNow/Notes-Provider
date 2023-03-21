@@ -1,9 +1,9 @@
-import 'package:notes_provider/models/note_operation.dart';
+import 'package:notes_provider/providers/notes_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class AddScreen extends StatelessWidget {
-  const AddScreen({super.key});
+class AddPage extends StatelessWidget {
+  const AddPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +22,25 @@ class AddScreen extends StatelessWidget {
             children: [
               TextField(
                 controller: titleController,
-                decoration: const InputDecoration(
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: const BorderSide(
+                      color: Colors.grey,
+                      width: 1.0,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Theme.of(context).primaryColor,
+                      width: 2.2,
+                    ),
+                  ),
                   hintText: "Title",
-                  border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(
@@ -32,10 +48,26 @@ class AddScreen extends StatelessWidget {
               ),
               TextField(
                 controller: descriptionController,
-                decoration: const InputDecoration(
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide: const BorderSide(
+                      color: Colors.grey,
+                      width: 1.0,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Theme.of(context).primaryColor,
+                      width: 2.2,
+                    ),
+                  ),
                   hintMaxLines: 15,
                   hintText: "Description",
-                  border: OutlineInputBorder(),
                 ),
               ),
               const SizedBox(
