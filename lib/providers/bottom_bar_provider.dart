@@ -1,23 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:notes_provider/utils/way_opening.dart';
 import 'package:notes_provider/view/pages/notes_page.dart';
-import 'package:notes_provider/view/pages/settings_page.dart';
 
 class BottomBarProvider extends ChangeNotifier {
   int _index = 0;
 
-  final List _pages = [
+  // list of pages
+
+  List<Widget> _pages = [
     const NotePage(),
-    const SettingsPage(),
+    WayOpening(),
   ];
 
   int get index => _index;
 
-  void setIndex(int index) {
-    _index = index;
-    getPage();
+  // setter for pages
+  set pages(List<Widget> newPages) {
+    _pages = newPages;
     notifyListeners();
   }
 
+  // set index of page
+  void setIndex(int index) {
+    _index = index;
+    notifyListeners();
+  }
+
+  // return page
   Widget getPage() {
     return _pages.elementAt(_index);
   }

@@ -10,4 +10,18 @@ class Note {
       "description": description,
     };
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'title': title,
+      'description': description,
+    };
+  }
+
+  factory Note.fromMap(Map<String, dynamic> map) {
+    return Note(
+      map['title'],
+      map['description'],
+    );
+  }
 }

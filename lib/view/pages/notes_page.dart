@@ -39,19 +39,17 @@ class NotePage extends StatelessWidget {
             FloatingActionButton.extended(
               heroTag: "btn1",
               onPressed: () => context.read<NotesOperations>().resetNotes(),
-              label: const Text("reset"),
+              label: const Text("Reset"),
             ),
             const SizedBox(
               width: 15,
             ),
             FloatingActionButton(
               heroTag: "btn2",
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => const AddPage()));
-              },
+              onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => const AddPage())),
               child: const Text("Add"),
             ),
           ],

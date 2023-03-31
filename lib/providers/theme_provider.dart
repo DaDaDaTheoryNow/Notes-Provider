@@ -22,41 +22,41 @@ class ThemeProvider extends ChangeNotifier {
 class MyThemes {
   //-------------DARK THEME SETTINGS----
   static final darkTheme = ThemeData(
-      scaffoldBackgroundColor: Colors.black,
-      appBarTheme: const AppBarTheme(
-        color: Colors.purple,
-      ),
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    scaffoldBackgroundColor: Colors.black,
+    appBarTheme: const AppBarTheme(
+      color: Colors.purple,
+    ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: Colors.purple,
+    ),
+    primaryColor: Colors.purple,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
         backgroundColor: Colors.purple,
       ),
-      primaryColor: Colors.purple,
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.purple, // Background color
-        ),
-      ),
-      iconTheme: const IconThemeData(color: Colors.white),
-      hintColor: Colors.grey
-      //colorScheme: ColorScheme.dark(),
-      );
+    ),
+    iconTheme: const IconThemeData(color: Colors.white),
+    hintColor: Colors.grey,
+    //colorScheme: ColorScheme.dark(),
+  );
 
   //-------------light THEME SETTINGS----
   static final lightTheme = ThemeData(
-      scaffoldBackgroundColor: Colors.white,
-      appBarTheme: AppBarTheme(
-        color: Colors.cyan[400],
-      ),
-      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    scaffoldBackgroundColor: Colors.white,
+    appBarTheme: AppBarTheme(
+      color: Colors.cyan[400],
+    ),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: Colors.cyan,
+    ),
+    primaryColor: Colors.cyan,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
         backgroundColor: Colors.cyan,
       ),
-      primaryColor: Colors.cyan,
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.cyan, // Background color
-        ),
-      ),
-      iconTheme: const IconThemeData(color: Colors.black),
-      hintColor: Colors.grey
-      //colorScheme: ColorScheme.light(),
-      );
+    ),
+    iconTheme: const IconThemeData(color: Colors.black),
+    hintColor: Colors.grey,
+    //colorScheme: ColorScheme.light(),
+  );
 }

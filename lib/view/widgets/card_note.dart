@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:notes_provider/models/note_model.dart';
 import 'package:notes_provider/providers/notes_provider.dart';
-import 'package:notes_provider/view/widgets/rename_dialog.dart';
+import 'package:notes_provider/view/widgets/update_note_dialog.dart';
 import 'package:provider/provider.dart';
 
 class CardNote extends StatelessWidget {
@@ -24,7 +24,6 @@ class CardNote extends StatelessWidget {
         borderRadius: BorderRadius.circular(17),
         border: Border.all(
           color: Theme.of(context).primaryColor,
-          strokeAlign: StrokeAlign.inside,
           width: 3,
         ),
       ),
@@ -85,6 +84,8 @@ class CardNote extends StatelessWidget {
                     Expanded(
                       child: IconButton(
                         onPressed: () {
+                          newTitleController.text = note.title;
+                          newDescriptionController.text = note.description;
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
@@ -112,7 +113,7 @@ class CardNote extends StatelessWidget {
                                       height: 5,
                                     ),
 
-                                    // rename note description
+                                    // update note description
                                     TextField(
                                       controller: newDescriptionController,
                                       decoration: InputDecoration(
@@ -148,7 +149,7 @@ class CardNote extends StatelessWidget {
                           );
                         },
                         icon: const Icon(
-                          Icons.drive_file_rename_outline_sharp,
+                          Icons.edit,
                           color: Colors.black,
                         ),
                         iconSize: 31,
