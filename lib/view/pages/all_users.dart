@@ -1,6 +1,8 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:notes_provider/models/users_collection_data_model.dart';
+import 'package:notes_provider/constants.dart';
+import 'package:notes_provider/models/user_collection_data_model.dart';
 import 'package:notes_provider/providers/auth_service.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +15,7 @@ class AllUsers extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Users"),
+        title: const Text("Users - We are Family"),
         centerTitle: true,
       ),
       body: FutureBuilder<dynamic>(
@@ -24,7 +26,9 @@ class AllUsers extends StatelessWidget {
         ) {
           List<UsersCollectionData> data = [];
 
-          if (snapshot.connectionState == ConnectionState.waiting) {
+          if (snapshot.connectionState == ConnectionState.waiting ||
+              !snapshot.hasData ||
+              snapshot.hasError) {
             return Center(
               child: LoadingAnimationWidget.flickr(
                 leftDotColor: Theme.of(context).primaryColor,
@@ -41,7 +45,7 @@ class AllUsers extends StatelessWidget {
                 item["Info"]![0],
                 item["Info"]![1],
                 item["Info"]![2],
-                item["Info"]![3],
+                item["avatarUrl"],
               ));
             }
           }
@@ -51,31 +55,36 @@ class AllUsers extends StatelessWidget {
             itemBuilder: (context, index) {
               return ListTile(
                 leading: CircleAvatar(
+                  backgroundColor: Colors.grey,
                   backgroundImage: NetworkImage(data[index].photoURL),
                 ),
-                title: RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: data[index].name,
-                        style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
+                title: Row(
+                  children: [
+                    Text(
+                      data[index].name,
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
                       ),
-                      const TextSpan(
-                        text: "  ",
+                    ),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 3),
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          WavyAnimatedText(
+                            data[index].permission,
+                            textStyle: userPermissionTextStyle,
+                            speed: Duration(milliseconds: 150),
+                          ),
+                        ],
+                        isRepeatingAnimation: false,
                       ),
-                      TextSpan(
-                        text: data[index].permission,
-                        style: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 subtitle: Text(
                   data[index].email,

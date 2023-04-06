@@ -63,10 +63,10 @@ class NotesOperations extends ChangeNotifier {
       // user is login and has json save = combaine firestore + json without duplicates
       if (currentUser != null && getJsonNotes != null) {
         final String uid = currentUser.uid;
-        final DocumentReference notesCollection =
+        final DocumentReference accountCollection =
             firestore.collection('users').doc(uid);
 
-        DocumentSnapshot snapshot = await notesCollection.get();
+        DocumentSnapshot snapshot = await accountCollection.get();
 
         if (snapshot.exists) {
           Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
@@ -188,34 +188,36 @@ class NotesOperations extends ChangeNotifier {
 
     if (currentUser != null) {
       final String uid = currentUser.uid;
-      final DocumentReference notesCollection =
+
+      // get User Document
+      final DocumentReference accountCollection =
           firestore.collection('users').doc(uid);
 
-      DocumentSnapshot snapshot = await notesCollection.get();
+      DocumentSnapshot snapshot = await accountCollection.get();
 
       // map note from Note
       List<dynamic> noteMap = _notes.map((note) => note.toMap()).toList();
 
+      // create or update info & notes on firestore
       if (snapshot.exists) {
-        notesCollection.update({
+        accountCollection.set({
           'Info': FieldValue.arrayUnion([
             currentUser.displayName,
-            currentUser.email,
           ]),
           'Notes': noteMap,
-        });
+        }, SetOptions(merge: true));
       } else if (!snapshot.exists) {
-        notesCollection.set({
+        accountCollection.set({
           'Info': [
             currentUser.displayName,
             currentUser.email,
-            currentUser.photoURL,
             'user',
           ],
           'Notes': noteMap,
         });
       }
     }
+
     saveNotesJson();
   }
   // <main logic for save notes/>

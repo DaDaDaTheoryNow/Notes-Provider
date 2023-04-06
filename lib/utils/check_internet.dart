@@ -4,15 +4,13 @@ class Internet {
   Future<bool> checkInternet() async {
     final connectivityResult = await (Connectivity().checkConnectivity());
 
-    // ПЕРЕДЕЛАТЬ В CASE
-    if (connectivityResult == ConnectivityResult.wifi) {
-      return true;
-    } else if (connectivityResult == ConnectivityResult.mobile) {
-      return true;
-    } else if (connectivityResult == ConnectivityResult.ethernet) {
-      return true;
-    } else {
-      return false;
+    switch (connectivityResult) {
+      case ConnectivityResult.wifi:
+      case ConnectivityResult.mobile:
+      case ConnectivityResult.ethernet:
+        return true;
+      default:
+        return false;
     }
   }
 }

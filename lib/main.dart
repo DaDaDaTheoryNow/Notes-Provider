@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:notes_provider/providers/auth_service.dart';
+import 'package:notes_provider/providers/avatar_service.dart';
 import 'package:notes_provider/providers/bottom_bar_provider.dart';
 import 'package:notes_provider/providers/notes_provider.dart';
 import 'package:notes_provider/providers/theme_provider.dart';
@@ -19,6 +20,7 @@ void main() async {
           ChangeNotifierProvider<BottomBarProvider>(
               create: (_) => BottomBarProvider()),
           ChangeNotifierProvider<AuthService>(create: (_) => AuthService()),
+          ChangeNotifierProvider<AvatarService>(create: (_) => AvatarService()),
         ],
         child: ChangeNotifierProvider(
           create: (context) => ThemeProvider(),

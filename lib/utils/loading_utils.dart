@@ -19,7 +19,7 @@ class LoadingUtils {
           children: <Widget>[
             Center(
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 20),
+                padding: const EdgeInsets.only(bottom: 0),
                 child: LoadingAnimationWidget.flickr(
                   leftDotColor: Theme.of(context).primaryColor,
                   rightDotColor: Theme.of(context).iconTheme.color!,
