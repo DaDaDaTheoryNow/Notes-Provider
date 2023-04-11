@@ -13,7 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AvatarService extends ChangeNotifier {
   final FirebaseStorage storage = FirebaseStorage.instance;
 
-  // save avatar in firestore
+  // save avatar url in firestore
   saveAvatarUrl(BuildContext context) async {
     final currentUser = FirebaseAuth.instance.currentUser;
     final firestore = FirebaseFirestore.instance;
@@ -24,11 +24,13 @@ class AvatarService extends ChangeNotifier {
       final reference =
           storage.ref().child('users/${currentUser.uid}/avatar.jpg');
 
+      // check files exists in firestore
       bool fileExists = await reference
           .getDownloadURL()
           .then((_) => true)
           .catchError((error) => false);
       if (!fileExists) {
+        // file not exists
         try {
           // save User Avatar
           final Response response = await Dio().get(
@@ -42,6 +44,7 @@ class AvatarService extends ChangeNotifier {
           final userRef = firestore.collection('users').doc(currentUser.uid);
           await userRef.update({'avatarUrl': downloadUrl});
 
+          // cache avatar
           prefs.setString("avatarUrl", downloadUrl);
         } catch (error) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -51,16 +54,19 @@ class AvatarService extends ChangeNotifier {
           );
         }
       } else {
+        // file exists
         final downloadUrl = await reference.getDownloadURL();
         final userRef = firestore.collection('users').doc(currentUser.uid);
         await userRef.update({'avatarUrl': downloadUrl});
 
+        // cache avatar
         prefs.setString("avatarUrl", downloadUrl);
       }
     }
   }
 
   // save avatar in firestorage
+  // pick avatar from device
   saveAvatarFile(BuildContext context) async {
     final currentUser = FirebaseAuth.instance.currentUser;
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -77,9 +83,11 @@ class AvatarService extends ChangeNotifier {
         final imageFile =
             await imagePicker.pickImage(source: ImageSource.gallery);
         if (imageFile != null) {
+          // get file from device
           final file = File(imageFile.path);
           await reference.putFile(file);
 
+          // save avater url in firestore
           final downloadUrl = await reference.getDownloadURL();
           final firestore = FirebaseFirestore.instance;
           final userRef = firestore.collection('users').doc(currentUser.uid);

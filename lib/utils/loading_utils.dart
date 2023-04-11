@@ -14,8 +14,7 @@ class LoadingUtils {
       builder: (BuildContext context) {
         return SimpleDialog(
           elevation: 0.0,
-          backgroundColor:
-              Colors.transparent, // can change this to your prefered color
+          backgroundColor: Colors.transparent,
           children: <Widget>[
             Center(
               child: Padding(
