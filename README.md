@@ -13,10 +13,11 @@ A simple note-taking application built with Flutter.
 
 ## Screenshots
 
-mtp://Xiaomi_POCO_X3_NFC_d143f8e5/Internal%20shared%20storage/Pictures/Screenshots/Screenshot_20230411-223359_Note%20App~2.png
-mtp://Xiaomi_POCO_X3_NFC_d143f8e5/Internal%20shared%20storage/Pictures/Screenshots/Screenshot_20230411-223402_Note%20App~2.png
-mtp://Xiaomi_POCO_X3_NFC_d143f8e5/Internal%20shared%20storage/Pictures/Screenshots/Screenshot_20230411-223415_Note%20App~2.png
-mtp://Xiaomi_POCO_X3_NFC_d143f8e5/Internal%20shared%20storage/Pictures/Screenshots/Screenshot_20230411-223418_Note%20App~3.png
+![Screenshot_20230411-223359_Note App~2](https://user-images.githubusercontent.com/105795587/231271990-14aa20ef-9679-47ad-a275-bb54f15274a2.png)
+![Screenshot_20230411-223402_Note App~2](https://user-images.githubusercontent.com/105795587/231271994-6e09215e-0789-4e40-b3d8-55acfe42f081.png)
+![Screenshot_20230411-223415_Note App~2](https://user-images.githubusercontent.com/105795587/231271997-6f1f8e53-331b-4c1c-9fa1-a3d089e4c388.png)
+![Screenshot_20230411-223418_Note App~3](https://user-images.githubusercontent.com/105795587/231272000-90781ed0-2f4d-4f78-9ec0-9b6f9d8e2729.png)
+
 
 ## Getting Started
 
