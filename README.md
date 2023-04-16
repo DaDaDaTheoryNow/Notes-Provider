@@ -10,6 +10,7 @@ A simple note-taking application built with Flutter.
 
 - Create and edit notes
 - Dark mode support
+- Android & Ios
 
 ## Screenshots
 
