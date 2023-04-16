@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notes_provider/providers/notes_provider.dart';
+import 'package:notes_provider/utils/check_internet.dart';
 import 'package:notes_provider/view/pages/add_page.dart';
 import 'package:notes_provider/view/widgets/card_note.dart';
 import 'package:provider/provider.dart';

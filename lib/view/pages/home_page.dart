@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
 
     // get saves notes
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      context.read<NotesOperations>().loadNotes();
+      context.read<NotesOperations>().loadNotes(context);
     });
   }
 

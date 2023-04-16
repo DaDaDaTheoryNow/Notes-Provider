@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:notes_provider/models/note_model.dart';
 import 'package:notes_provider/utils/check_internet.dart';
+import 'package:notes_provider/utils/loading_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NotesOperations extends ChangeNotifier {
@@ -48,7 +49,7 @@ class NotesOperations extends ChangeNotifier {
   //
   // <main logic for load notes>
   //
-  loadNotes() async {
+  loadNotes(BuildContext context) async {
     Future<bool> internet = Internet().checkInternet();
 
     if (await internet) {
@@ -62,6 +63,8 @@ class NotesOperations extends ChangeNotifier {
 
       // user is login and has json save = combaine firestore + json without duplicates
       if (currentUser != null && getJsonNotes != null) {
+        LoadingUtils(context).startLoading();
+
         final String uid = currentUser.uid;
         final DocumentReference accountCollection =
             firestore.collection('users').doc(uid);
@@ -113,6 +116,7 @@ class NotesOperations extends ChangeNotifier {
           // Update _notes with the unique notes
           _notes = uniqueNotes;
         }
+        LoadingUtils(context).stopLoading();
       } else if (currentUser == null && getJsonNotes != null) {
         // user does not have account
         // load from json

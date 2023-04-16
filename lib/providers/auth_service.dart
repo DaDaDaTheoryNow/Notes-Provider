@@ -66,7 +66,8 @@ class AuthService extends ChangeNotifier {
       }
 
       // Reload notes and save avatar URL.
-      await Provider.of<NotesOperations>(context, listen: false).loadNotes();
+      await Provider.of<NotesOperations>(context, listen: false)
+          .loadNotes(context);
       await Provider.of<AvatarService>(context, listen: false)
           .saveAvatarUrl(context);
 
